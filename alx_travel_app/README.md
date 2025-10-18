@@ -84,8 +84,3 @@ alx_travel_app_0x00/
 - Automate database population with seeding  
 
 ---
-
-## 👩🏽‍💻 Author  
-
-**Matilda Esenam Gbeve (GEM)**  
-💻 Full Stack Developer | 🌍 ALX SE  
