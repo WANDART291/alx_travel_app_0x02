@@ -1,86 +1,26 @@
-# 🛫 ALX Travel App 0x00  
+# alx_travel_app_0x02: Milestone 4 - Chapa Payment Integration
 
-This project is part of the **ALX Backend Specialization**.  
-It extends the travel booking application by introducing **database models**, **API serializers**, and a **custom seeding command**.  
+## 📝 Project Overview
 
----
-
-## 📌 Features  
-
-- **Database Models**  
-  - `Listing` – Represents properties available for booking.  
-  - `Booking` – Represents user bookings linked to a listing.  
-  - `Review` – Represents customer feedback for a booking.  
-
-- **Serializers**  
-  - Convert Django models (`Listing`, `Booking`) into JSON for API responses using Django REST Framework (DRF).  
-
-- **Database Seeding**  
-  - A custom management command `seed` to populate the database with sample data for development and testing.  
+This project completes **Milestone 4** of the Django-based travel booking application by integrating the **Chapa Payment Gateway** for secure transaction processing. The core focus was to establish a reliable payment workflow, from initiation to verification, ensuring bookings are only confirmed upon successful payment.
 
 ---
 
-## 🚀 Getting Started  
+## ✨ Learning Outcomes
 
-### 1️⃣ Clone the Repository  
-```  
-git clone https://github.com/<your-username>/alx_travel_app_0x00.git  
-cd alx_travel_app_0x00  
-```  
+By completing this task, the following technical skills were demonstrated:
 
-### 2️⃣ Install Dependencies  
-Make sure you have **Python 3.x** and **pip** installed. Then run:  
-```  
-pip install -r requirements.txt  
-```  
-
-### 3️⃣ Apply Migrations  
-```  
-python manage.py migrate  
-```  
-
-### 4️⃣ Run Development Server  
-```  
-python manage.py runserver  
-```  
-
-Visit: <http://127.0.0.1:8000>  
+* **API Integration:** Successfully connected the Django backend to the external Chapa REST API using the `requests` library.
+* **Secure Credential Management:** Implemented the `python-dotenv` library to securely load and utilize the `CHAPA_SECRET_KEY` from environment variables.
+* **Data Modeling:** Created the `Payment` model to persist and track transaction data (`tx_ref`, `amount`, `status`, etc.).
+* **Payment Workflow:** Built API endpoints for:
+    1.  **Initiation:** Sending booking details to Chapa and receiving a secure checkout URL.
+    2.  **Verification:** Handling the callback/redirect from Chapa to confirm the transaction status and update the local database record.
+* **Security Handling:** Used the `@csrf_exempt` decorator on the payment initiation endpoint to allow external POST requests while maintaining Django's general security.
+* **Asynchronous Tasks (Conceptual):** Integrated a placeholder function to simulate the asynchronous sending of confirmation emails using a Celery task upon successful payment.
 
 ---
 
-## 🌱 Seeding the Database  
+## 📂 Project Structure
 
-Run the custom seed command to insert sample listings:  
-```  
-python manage.py seed  
-```  
-
----
-
-## 📂 Project Structure  
-
-```  
-alx_travel_app_0x00/  
- ├── README.md  
- ├── manage.py  
- ├── alx_travel_app/  
- │    ├── settings.py  
- │    └── urls.py  
- └── listings/  
-      ├── models.py  
-      ├── serializers.py  
-      └── management/  
-           └── commands/  
-                ├── __init__.py  
-                └── seed.py  
-```  
-
----
-
-## ✨ Learning Objectives  
-
-- Model relational data in Django  
-- Serialize data with DRF  
-- Automate database population with seeding  
-
----
+The primary file modifications were made within the `listings` application and the main project configuration:
